@@ -1,7 +1,7 @@
-FROM progrium/cedarish
-MAINTAINER Jeff Lindsay <progrium@gmail.com>
+FROM qtcs/cedarish
+MAINTAINER Jari Kolehmainen <jari.kolehmainen@digia.com>
 
-RUN useradd slugbuilder --home-dir /app
+RUN useradd slugbuilder -u 5000 --home-dir /app
 
 # allow user RW access to /app
 RUN mkdir /app

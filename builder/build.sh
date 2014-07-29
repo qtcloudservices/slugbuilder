@@ -14,6 +14,7 @@ app_dir=/app
 build_root=/tmp/build
 cache_root=/tmp/cache
 buildpack_root=/tmp/buildpacks
+git_root=/tmp/gitrepo
 
 mkdir -p $app_dir
 mkdir -p $cache_root
@@ -44,13 +45,19 @@ function ensure_indent() {
       echo $'\e[1G      ' "$line" | output_redirect
     fi
 
-  done 
+  done
 }
 
-cd $app_dir
-
-## Load source from STDIN
-cat | tar -xm
+if [[ -d "$git_root" ]]; then
+	cd $git_root
+	## Load source from git repository
+	git archive master | tar -xC $app_dir
+	cd $app_dir
+else
+	cd $app_dir
+	## Load source from STDIN
+	cat | tar -xm
+fi
 
 # In heroku, there are two separate directories, and some
 # buildpacks expect that.
@@ -115,12 +122,12 @@ if [[ -f "$build_root/.slugignore" ]]; then
 else
 	tar --exclude='.git' --use-compress-program=pigz -C $build_root -cf $slug_file . | cat
 fi
-  
+
 if [[ "$slug_file" != "-" ]]; then
 	slug_size=$(du -Sh "$slug_file" | cut -f1)
 	echo_title "Compiled slug size is $slug_size"
 
 	if [[ $put_url ]]; then
-		curl -0 -s -o /dev/null -X PUT -T $slug_file "$put_url" 
+		curl -0 -s -o /dev/null -X PUT -T $slug_file "$put_url"
 	fi
 fi

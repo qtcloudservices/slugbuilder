@@ -1,4 +1,5 @@
 https://github.com/ddollar/heroku-buildpack-multi.git
+https://github.com/jakolehm/qtc-buildpack-qt.git
 https://github.com/heroku/heroku-buildpack-ruby.git
 https://github.com/heroku/heroku-buildpack-nodejs.git
 https://github.com/heroku/heroku-buildpack-clojure.git

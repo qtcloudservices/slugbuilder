@@ -8,6 +8,6 @@ RUN mkdir /app
 RUN chown -R slugbuilder:slugbuilder /app
 
 ADD ./builder/ /tmp/builder
-RUN xargs -L 1 /tmp/builder/install-buildpack /tmp/buildpacks < /tmp/builder/buildpacks.txt
+RUN /tmp/builder/install-buildpacks
 ENTRYPOINT ["/tmp/builder/build.sh"]
 USER slugbuilder

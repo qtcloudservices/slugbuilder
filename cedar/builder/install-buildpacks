@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+BUILDPACK_INSTALL_PATH="/tmp/buildpacks"
+
+download_buildpack() {
+    buildpack_url="$1"
+    buildpack_name=$(basename $buildpack_url)
+    buildpack_commit="$2"
+
+    git clone $buildpack_url $BUILDPACK_INSTALL_PATH/$buildpack_name
+    pushd $BUILDPACK_INSTALL_PATH/$buildpack_name 2>&1 >/dev/null
+        git checkout --quiet $buildpack_commit
+    popd 2>&1 >/dev/null
+}
+
+mkdir -p $BUILDPACK_INSTALL_PATH
+
+download_buildpack https://github.com/qtcloudservices/qtc-buildpack-qt.git       608743f
+download_buildpack https://github.com/qtcloudservices/qtc-buildpack-ruby.git     33f2e18
+download_buildpack https://github.com/qtcloudservices/qtc-buildpack-nodejs.git   v60
+download_buildpack https://github.com/qtcloudservices/qtc-buildpack-java.git     8354907
+download_buildpack https://github.com/qtcloudservices/qtc-buildpack-python.git   7e4159e
+download_buildpack https://github.com/qtcloudservices/qtc-buildpack-php.git      dcfaa24
+
+chown -R slugbuilder:slugbuilder "$BUILDPACK_INSTALL_PATH"

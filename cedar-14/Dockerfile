@@ -1,4 +1,4 @@
-FROM qtcs/cedarish:lucid
+FROM qtcs/cedarish:cedar-14
 MAINTAINER Jari Kolehmainen <jari.kolehmainen@digia.com>
 
 RUN useradd slugbuilder -u 5000 --home-dir /app

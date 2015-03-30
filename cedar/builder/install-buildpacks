@@ -16,11 +16,11 @@ download_buildpack() {
 
 mkdir -p $BUILDPACK_INSTALL_PATH
 
-download_buildpack https://github.com/qtcloudservices/qtc-buildpack-qt.git       608743f
-download_buildpack https://github.com/qtcloudservices/qtc-buildpack-ruby.git     33f2e18
-download_buildpack https://github.com/qtcloudservices/qtc-buildpack-nodejs.git   v60
-download_buildpack https://github.com/qtcloudservices/qtc-buildpack-java.git     8354907
-download_buildpack https://github.com/qtcloudservices/qtc-buildpack-python.git   7e4159e
-download_buildpack https://github.com/qtcloudservices/qtc-buildpack-php.git      dcfaa24
+download_buildpack https://github.com/qtcloudservices/qtc-buildpack-qt.git       0a50d54
+download_buildpack https://github.com/qtcloudservices/qtc-buildpack-ruby.git     8f60443
+download_buildpack https://github.com/qtcloudservices/qtc-buildpack-nodejs.git   7349622
+download_buildpack https://github.com/qtcloudservices/qtc-buildpack-java.git     ff892da
+download_buildpack https://github.com/qtcloudservices/qtc-buildpack-python.git   c5d00b3
+download_buildpack https://github.com/qtcloudservices/qtc-buildpack-php.git      d4055c2
 
 chown -R slugbuilder:slugbuilder "$BUILDPACK_INSTALL_PATH"

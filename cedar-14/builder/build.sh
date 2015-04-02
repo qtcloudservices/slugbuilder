@@ -99,6 +99,7 @@ if [[ -n "$BUILDPACK_URL" ]]; then
 		git checkout --quiet "$committish"
 		popd &>/dev/null
 	fi
+	buildpack_name=$($buildpack/bin/detect "$build_root") && selected_buildpack=$buildpack
 else
   for buildpack in "${buildpacks[@]}"; do
   	buildpack_name=$($buildpack/bin/detect "$build_root") && selected_buildpack=$buildpack && break
